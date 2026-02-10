@@ -13,19 +13,24 @@ function TypedText({ text, className }: { text: string; className?: string }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const delay = setTimeout(() => {
-      let i = 0;
-      const interval = setInterval(() => {
-        i++;
-        setDisplayed(text.slice(0, i));
-        if (i >= text.length) {
-          clearInterval(interval);
-          setDone(true);
-        }
-      }, 120);
-      return () => clearInterval(interval);
-    }, 600);
-    return () => clearTimeout(delay);
+    let cancelled = false;
+    let i = 0;
+
+    const typeNext = () => {
+      if (cancelled || i >= text.length) {
+        if (!cancelled) setDone(true);
+        return;
+      }
+      i++;
+      setDisplayed(text.slice(0, i));
+      // Random delay: mostly 80-160ms, occasional longer pauses
+      const base = 80 + Math.random() * 80;
+      const pause = Math.random() < 0.15 ? 200 + Math.random() * 150 : 0;
+      setTimeout(typeNext, base + pause);
+    };
+
+    const delay = setTimeout(typeNext, 600);
+    return () => { cancelled = true; clearTimeout(delay); };
   }, [text]);
 
   return (
