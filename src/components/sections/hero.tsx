@@ -23,7 +23,7 @@ export function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32 text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#FFFAF5]">
           Foodservice growth,{" "}
-          <span className="font-demontilles bg-gradient-to-r from-[#6FB7F2] via-[#AF95E4] to-[#E41C50] bg-clip-text text-transparent">
+          <span className="font-demontilles bg-gradient-to-r from-[#6FB7F2] via-[#AF95E4] to-[#E41C50] bg-clip-text text-transparent inline-block py-2 leading-relaxed">
             engineered.
           </span>
         </h1>
