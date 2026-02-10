@@ -72,8 +72,8 @@ function ContactForm() {
       {/* Hero banner */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <Image
-          src="/croissant.jpg"
-          alt="Fresh croissant sandwich"
+          src="/contact-hero.jpg"
+          alt="Gourmet dishes with herbs and spices"
           fill
           className="object-cover"
         />
