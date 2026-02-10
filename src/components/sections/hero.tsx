@@ -35,14 +35,16 @@ function TypedText({ text, className }: { text: string; className?: string }) {
     <span className={className}>
       {displayed}
       <span
-        className={done ? "opacity-0" : ""}
+        className={done ? "opacity-0" : "inline-block"}
         style={{
           animation: done ? "none" : "blink 0.7s step-end infinite",
-          marginLeft: "-2px",
+          width: "3px",
+          height: "0.85em",
+          backgroundColor: "currentColor",
+          verticalAlign: "baseline",
+          marginLeft: "2px",
         }}
-      >
-        |
-      </span>
+      />
       <style>{`@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }`}</style>
     </span>
   );
