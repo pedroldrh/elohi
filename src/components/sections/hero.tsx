@@ -34,7 +34,16 @@ function TypedText({ text, className }: { text: string; className?: string }) {
   return (
     <span className={className}>
       {displayed}
-      {!done && <span className="animate-pulse">|</span>}
+      <span
+        className={done ? "opacity-0" : ""}
+        style={{
+          animation: done ? "none" : "blink 0.7s step-end infinite",
+          marginLeft: "-2px",
+        }}
+      >
+        |
+      </span>
+      <style>{`@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }`}</style>
     </span>
   );
 }
