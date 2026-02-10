@@ -40,7 +40,7 @@ function TypedText({ text, className }: { text: string; className?: string }) {
           animation: done ? "none" : "blink 0.7s step-end infinite",
           width: "3px",
           height: "0.85em",
-          backgroundColor: "currentColor",
+          backgroundColor: "#AF95E4",
           verticalAlign: "baseline",
           marginLeft: "2px",
         }}
