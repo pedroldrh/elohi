@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ParallaxHero } from "@/components/sections/parallax-hero";
 import {
   Card,
   CardHeader,
@@ -122,15 +123,7 @@ export default function ServicesPage() {
   return (
     <main className="pt-24">
       {/* Header with background image */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <Image
-          src="/grain-bowl.jpg"
-          alt="Mediterranean grain bowl"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30" />
-
+      <ParallaxHero src="/grain-bowl.jpg" alt="Mediterranean grain bowl">
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#FFFAF5]">
             Services
@@ -144,7 +137,7 @@ export default function ServicesPage() {
             </QuizTrigger>
           </div>
         </div>
-      </section>
+      </ParallaxHero>
 
       {/* Service Cards */}
       <section className="py-12 px-4 sm:px-6 lg:px-8">

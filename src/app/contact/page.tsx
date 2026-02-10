@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { ParallaxHero } from "@/components/sections/parallax-hero";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
@@ -70,15 +71,7 @@ function ContactForm() {
   return (
     <main className="pt-24">
       {/* Hero banner */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <Image
-          src="/contact-hero.jpg"
-          alt="Gourmet dishes with herbs and spices"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30" />
-
+      <ParallaxHero src="/contact-hero.jpg" alt="Gourmet dishes with herbs and spices">
         <div className="relative z-10 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#FFFAF5]">
             Get in Touch
@@ -87,7 +80,7 @@ function ContactForm() {
             Ready to grow your foodservice business? Let&apos;s talk.
           </p>
         </div>
-      </section>
+      </ParallaxHero>
 
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">

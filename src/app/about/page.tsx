@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { BookOpen, Wrench, TrendingUp, Users, Handshake } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { ParallaxHero } from "@/components/sections/parallax-hero";
 
 export const metadata: Metadata = {
   title: "About",
@@ -43,15 +44,7 @@ export default function AboutPage() {
   return (
     <main className="pt-24">
       {/* Hero with background image */}
-      <section className="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <Image
-          src="/serving-dish.jpg"
-          alt="Serving a beautifully prepared dish"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30" />
-
+      <ParallaxHero src="/serving-dish.jpg" alt="Serving a beautifully prepared dish" className="py-28">
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#FFFAF5]">
             Built for{" "}
@@ -66,7 +59,7 @@ export default function AboutPage() {
             execution.
           </p>
         </div>
-      </section>
+      </ParallaxHero>
 
       {/* Approach */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">

@@ -1,11 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
+import { useReveal } from "@/lib/animations";
 
 export function FeaturedVideo() {
+  const { ref, isVisible } = useReveal(0.15);
+
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#1A1A1A]">
-      <div className="mx-auto max-w-4xl text-center">
+    <section ref={ref} className="py-20 px-4 sm:px-6 lg:px-8 bg-[#1A1A1A]">
+      <div
+        className="mx-auto max-w-4xl text-center transition-all duration-700 ease-out"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? "translateY(0)" : "translateY(30px)",
+        }}
+      >
         <h2 className="text-3xl sm:text-4xl font-bold text-[#FFFAF5]">
           From Our Fireside Chats
         </h2>

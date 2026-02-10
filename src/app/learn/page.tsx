@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ParallaxHero } from "@/components/sections/parallax-hero";
 
 export const metadata: Metadata = {
   title: "Learn",
@@ -28,15 +29,7 @@ export default function LearnPage() {
   return (
     <main className="pt-24">
       {/* Hero */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <Image
-          src="/salad-bowls.jpg"
-          alt="Colorful salad bowls overhead"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30" />
-
+      <ParallaxHero src="/salad-bowls.jpg" alt="Colorful salad bowls overhead">
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#FFFAF5]">
             Learn
@@ -45,7 +38,7 @@ export default function LearnPage() {
             Free foodservice education — straight from the experts.
           </p>
         </div>
-      </section>
+      </ParallaxHero>
 
       {/* Videos */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">

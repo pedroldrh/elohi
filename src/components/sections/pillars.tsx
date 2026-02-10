@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { BookOpen, Wrench, TrendingUp } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { useReveal } from "@/lib/animations";
 
 const PILLARS = [
   {
@@ -48,10 +51,18 @@ const PILLARS = [
 ];
 
 export function Pillars() {
+  const { ref, isVisible } = useReveal(0.1);
+
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8">
+    <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="text-center mb-16">
+        <div
+          className="text-center mb-16 transition-all duration-700 ease-out"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(30px)",
+          }}
+        >
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
             Three tracks. <span className="font-demontilles">One goal.</span>
           </h2>
@@ -62,10 +73,15 @@ export function Pillars() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {PILLARS.map((pillar) => (
+          {PILLARS.map((pillar, i) => (
             <Card
               key={pillar.title}
-              className="rounded-2xl border-border overflow-hidden hover:border-[#AF95E4]/40 transition-all duration-300 group"
+              className="rounded-2xl border-border overflow-hidden hover:border-[#AF95E4]/40 transition-all duration-700 ease-out group"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateY(0)" : "translateY(40px)",
+                transitionDelay: `${200 + i * 150}ms`,
+              }}
             >
               {/* Card image */}
               <div className="relative h-48 overflow-hidden">

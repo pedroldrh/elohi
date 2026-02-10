@@ -2,11 +2,20 @@
 
 import Image from "next/image";
 import { QuizTrigger } from "@/components/quiz/quiz-trigger";
+import { useReveal } from "@/lib/animations";
 
 export function CTABanner() {
+  const { ref, isVisible } = useReveal(0.15);
+
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl">
+    <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8">
+      <div
+        className="mx-auto max-w-5xl transition-all duration-700 ease-out"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? "translateY(0) scale(1)" : "translateY(20px) scale(0.98)",
+        }}
+      >
         <div className="relative rounded-3xl overflow-hidden">
           {/* Background image */}
           <Image
