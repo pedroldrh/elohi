@@ -12,8 +12,8 @@ export function SocialProof() {
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background image with overlay */}
       <Image
-        src="/kitchen-plating.jpg"
-        alt="Professional kitchen plating"
+        src="/social-proof-bg.jpg"
+        alt="Artisan cheese and fruit board"
         fill
         className="object-cover"
       />
