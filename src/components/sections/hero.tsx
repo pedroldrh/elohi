@@ -23,10 +23,8 @@ function TypedText({ text, className }: { text: string; className?: string }) {
       }
       i++;
       setDisplayed(text.slice(0, i));
-      // Random delay: mostly 80-160ms, occasional longer pauses
-      const base = 80 + Math.random() * 80;
-      const pause = Math.random() < 0.15 ? 200 + Math.random() * 150 : 0;
-      setTimeout(typeNext, base + pause);
+      const delay = 80 + Math.random() * 80;
+      setTimeout(typeNext, delay);
     };
 
     const delay = setTimeout(typeNext, 600);
