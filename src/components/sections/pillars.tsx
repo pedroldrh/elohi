@@ -94,10 +94,10 @@ export function Pillars() {
                   {pillar.details.map((detail) => (
                     <li
                       key={detail}
-                      className="text-sm text-muted-foreground flex items-start gap-2"
+                      className="text-sm text-muted-foreground flex items-center gap-2"
                     >
-                      <span style={{ color: pillar.accentColor }} className="mt-1">&#8226;</span>
-                      {detail}
+                      <span style={{ color: pillar.accentColor }} className="text-lg leading-none shrink-0">&#8226;</span>
+                      <span>{detail}</span>
                     </li>
                   ))}
                 </ul>
