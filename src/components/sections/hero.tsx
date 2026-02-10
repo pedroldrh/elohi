@@ -22,7 +22,7 @@ function TypedText({ text, className }: { text: string; className?: string }) {
           clearInterval(interval);
           setDone(true);
         }
-      }, 60);
+      }, 120);
       return () => clearInterval(interval);
     }, 600);
     return () => clearTimeout(delay);
