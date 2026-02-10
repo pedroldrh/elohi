@@ -7,8 +7,8 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
-      <SocialProof />
       <Pillars />
+      <SocialProof />
       <CTABanner />
     </main>
   );
