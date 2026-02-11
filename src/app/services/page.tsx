@@ -210,7 +210,7 @@ export default function ServicesPage() {
                 </div>
               </CardContent>
 
-              <CardFooter>
+              <CardFooter className="pt-4">
                 <Button asChild className="w-full" style={{ backgroundColor: service.accentColor }}>
                   <Link href={service.ctaHref}>{service.cta}</Link>
                 </Button>
