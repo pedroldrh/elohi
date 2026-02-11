@@ -123,7 +123,7 @@ export default function ServicesPage() {
   return (
     <main className="pt-24">
       {/* Header with background image */}
-      <ParallaxHero src="/grain-bowl.jpg" alt="Mediterranean grain bowl">
+      <ParallaxHero src="/services-hero.jpg" alt="Colorful spread of dishes overhead">
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#FFFAF5]">
             Services
