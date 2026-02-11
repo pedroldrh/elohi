@@ -81,15 +81,7 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
       { label: "Pipeline + outreach", points: 3 },
     ],
   },
-  {
-    question: "What kind of help do you want right now?",
-    options: [
-      { label: "Learn the basics", points: 0 },
-      { label: "Solve a specific problem", points: 2 },
-      { label: "Full strategy + execution support", points: 3 },
-    ],
-  },
 ];
 
 export const TOTAL_QUESTIONS = QUIZ_QUESTIONS.length;
-export const MAX_SCORE = 27; // 3*8 + 3 = 27
+export const MAX_SCORE = 24; // 8 questions × 3 points max

@@ -17,7 +17,7 @@ import { trackEvent } from "@/lib/analytics";
 import type { QuizResult } from "@/types";
 
 interface QuizState {
-  step: number; // 0=lead, 1-9=questions, 10=results
+  step: number; // 0=lead, 1-8=questions, 9=results
   lead: { email: string; company: string; role: string };
   answers: (number | null)[];
   result: QuizResult | null;

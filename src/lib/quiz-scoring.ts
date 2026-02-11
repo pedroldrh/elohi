@@ -48,12 +48,11 @@ export function calculateQuizResult(answers: number[]): QuizResult {
   }
 
   // Track assignment
-  const q2Answer = answers[1] ?? -1; // Q2 is index 1
-  const q9Answer = answers[8] ?? -1; // Q9 is index 8
+  const q2Answer = answers[1] ?? -1; // Q2: "Where are you in your journey?"
 
   let recommendedTrack: Track;
 
-  if (readinessScore < 40 || q2Answer === 0 || q9Answer === 0) {
+  if (readinessScore < 40 || q2Answer === 0) {
     recommendedTrack = "LEARN";
   } else if (readinessScore >= 75) {
     recommendedTrack = "SCALE";
