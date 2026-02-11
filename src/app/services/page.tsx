@@ -29,7 +29,7 @@ const SERVICES = [
     image: "/berries.jpg",
     imageAlt: "Fresh berries — learning the basics",
     description:
-      "Build the foundation you need before investing in sales infrastructure.",
+      "Build the foundation you need before investing in sales infrastructure:",
     outcomes: [
       "Understand distributor landscape and economics",
       "Build a basic pricing model",
@@ -53,7 +53,7 @@ const SERVICES = [
     image: "/pizza-kitchen.jpg",
     imageAlt: "Pizza kitchen operations — building systems",
     description:
-      "Targeted consulting engagements scoped to your biggest growth blockers.",
+      "Targeted consulting engagements scoped to your biggest growth blockers:",
     outcomes: [
       "Custom pricing study for your products",
       "Freight & distribution cost model",
@@ -77,7 +77,7 @@ const SERVICES = [
     image: "/lasagna.jpg",
     imageAlt: "Professional food presentation — scaling operations",
     description:
-      "Ongoing advisory and fractional sales leadership to grow foodservice revenue.",
+      "Ongoing advisory and fractional sales leadership to grow foodservice revenue:",
     outcomes: [
       "Optimized trade spend and promotions",
       "Active pipeline management",
@@ -169,7 +169,7 @@ export default function ServicesPage() {
                 <CardDescription className="text-sm font-medium text-muted-foreground">
                   {service.subtitle}
                 </CardDescription>
-                <p className="text-sm text-muted-foreground mt-2">
+                <p className="text-sm text-muted-foreground mt-2 mb-3">
                   {service.description}
                 </p>
               </CardHeader>
