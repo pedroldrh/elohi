@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { QuizTrigger } from "@/components/quiz/quiz-trigger";
 import { ArrowRight } from "lucide-react";
-import { useParallax } from "@/lib/animations";
+
 
 function TypedText({ text, className }: { text: string; className?: string }) {
   const [displayed, setDisplayed] = useState("");
@@ -51,15 +51,10 @@ function TypedText({ text, className }: { text: string; className?: string }) {
 }
 
 export function Hero() {
-  const { ref, offset } = useParallax(0.3);
-
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Background image with parallax */}
-      <div
-        className="absolute -inset-y-[20%] inset-x-0"
-        style={{ transform: `translateY(${offset}px)`, willChange: "transform" }}
-      >
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Background image */}
+      <div className="absolute inset-0">
         <Image
           src="/hero-plating.jpg"
           alt="Chefs plating dishes in a professional kitchen"

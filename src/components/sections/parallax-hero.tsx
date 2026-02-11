@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { useParallax } from "@/lib/animations";
 
 export function ParallaxHero({
   src,
@@ -14,14 +11,9 @@ export function ParallaxHero({
   children: React.ReactNode;
   className?: string;
 }) {
-  const { ref, offset } = useParallax(0.3);
-
   return (
-    <section ref={ref} className={`relative ${className} px-4 sm:px-6 lg:px-8 overflow-hidden bg-black`}>
-      <div
-        className="absolute -inset-y-[20%] inset-x-0"
-        style={{ transform: `translateY(${offset}px)`, willChange: "transform" }}
-      >
+    <section className={`relative ${className} px-4 sm:px-6 lg:px-8 overflow-hidden bg-black`}>
+      <div className="absolute inset-0">
         <Image
           src={src}
           alt={alt}
