@@ -104,7 +104,7 @@ export function Pillars() {
 
               <CardHeader className="pt-4">
                 <CardTitle className="text-xl">{pillar.title}</CardTitle>
-                <CardDescription>{pillar.description}</CardDescription>
+                <CardDescription className="mb-3">{pillar.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
