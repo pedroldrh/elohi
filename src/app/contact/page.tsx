@@ -193,15 +193,24 @@ function ContactForm() {
 
             {/* Sidebar */}
             <div className="md:col-span-2 space-y-6">
-              {/* Food image card */}
-              <div className="relative h-44 rounded-2xl overflow-hidden">
-                <Image
-                  src="/poke-bowl.jpg"
-                  alt="Fresh poke bowl"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              {/* Founder card */}
+              <Card className="rounded-2xl border-border pt-0 gap-0 overflow-hidden">
+                <div className="relative h-52">
+                  <Image
+                    src="/stephanie-lind.jpg"
+                    alt="Stephanie Lind, Founder & Chief Strategy Officer"
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <p className="font-bold text-foreground">Stephanie Lind</p>
+                  <p className="text-xs text-[#6FB7F2] font-medium">Founder & Chief Strategy Officer</p>
+                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                    25+ years in food &amp; beverage — from PepsiCo and Sysco to leading global sales at Impossible Foods. Stephanie founded ESA to help manufacturers win in foodservice distribution.
+                  </p>
+                </CardContent>
+              </Card>
 
               <Card className="rounded-2xl border-border">
                 <CardContent className="p-6 space-y-4">
