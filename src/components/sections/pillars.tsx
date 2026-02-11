@@ -84,14 +84,15 @@ export function Pillars() {
               }}
             >
               {/* Card image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-48 overflow-hidden bg-black">
                 <Image
                   src={pillar.image}
                   alt={pillar.imageAlt}
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 <div
                   className="absolute bottom-3 left-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold text-[#FFFAF5]"
                   style={{ backgroundColor: pillar.accentColor }}

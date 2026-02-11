@@ -54,10 +54,10 @@ export function Hero() {
   const { ref, offset } = useParallax(0.3);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Background image with parallax */}
       <div
-        className="absolute -inset-y-[15%] inset-x-0"
+        className="absolute -inset-y-[20%] inset-x-0"
         style={{ transform: `translateY(${offset}px)`, willChange: "transform" }}
       >
         <Image

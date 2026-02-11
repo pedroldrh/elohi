@@ -20,7 +20,7 @@ export function useParallax(speed = 0.2) {
       ticking = true;
       requestAnimationFrame(() => {
         const rect = el.getBoundingClientRect();
-        const maxOffset = el.offsetHeight * 0.15;
+        const maxOffset = el.offsetHeight * 0.18;
         const scrolled = Math.max(-maxOffset, Math.min(maxOffset, -rect.top * speed));
         setOffset(scrolled);
         ticking = false;
