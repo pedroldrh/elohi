@@ -145,7 +145,7 @@ export default function ServicesPage() {
           {SERVICES.map((service) => (
             <Card
               key={service.title}
-              className="rounded-2xl border-border flex flex-col overflow-hidden group"
+              className="rounded-2xl border-border flex flex-col overflow-hidden group pt-0 gap-0"
             >
               {/* Card image */}
               <div className="relative h-44 overflow-hidden">

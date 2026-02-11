@@ -69,7 +69,7 @@ export default function AboutPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {APPROACH.map((item) => (
-              <Card key={item.title} className="rounded-2xl border-border overflow-hidden group">
+              <Card key={item.title} className="rounded-2xl border-border overflow-hidden group pt-0 gap-0">
                 <div className="relative h-44 overflow-hidden">
                   <Image
                     src={item.image}
