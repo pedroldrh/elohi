@@ -9,7 +9,7 @@ const PILLARS = [
   {
     icon: BookOpen,
     title: "Learn",
-    description: "Master the fundamentals of foodservice sales.",
+    description: "Master the fundamentals of foodservice sales:",
     image: "/pillar-learn.jpg",
     imageAlt: "Fresh salad bar with colorful ingredients",
     details: [
@@ -23,7 +23,7 @@ const PILLARS = [
   {
     icon: Wrench,
     title: "Build",
-    description: "Targeted projects to solve specific growth challenges.",
+    description: "Targeted projects to solve specific growth challenges:",
     image: "/pillar-build.jpg",
     imageAlt: "Restaurant server presenting a plated dish",
     details: [
@@ -37,7 +37,7 @@ const PILLARS = [
   {
     icon: TrendingUp,
     title: "Scale",
-    description: "Ongoing advisory for accelerating foodservice revenue.",
+    description: "Ongoing advisory for accelerating foodservice revenue:",
     image: "/pillar-scale.jpg",
     imageAlt: "Grocery store produce section at scale",
     details: [
