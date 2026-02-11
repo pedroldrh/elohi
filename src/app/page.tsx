@@ -4,6 +4,7 @@ import { Pillars } from "@/components/sections/pillars";
 import { Clients } from "@/components/sections/clients";
 import { FeaturedVideo } from "@/components/sections/featured-video";
 import { CTABanner } from "@/components/sections/cta-banner";
+import { ImagePrefetcher } from "@/components/image-prefetcher";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <SocialProof />
       <FeaturedVideo />
       <CTABanner />
+      <ImagePrefetcher />
     </main>
   );
 }
