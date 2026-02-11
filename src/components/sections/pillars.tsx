@@ -76,7 +76,7 @@ export function Pillars() {
           {PILLARS.map((pillar, i) => (
             <Card
               key={pillar.title}
-              className="rounded-2xl border-border overflow-hidden hover:border-[#AF95E4]/40 transition-all duration-700 ease-out group"
+              className="rounded-2xl border-border overflow-hidden hover:border-[#AF95E4]/40 transition-all duration-700 ease-out group pt-0 gap-0"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "translateY(0)" : "translateY(40px)",
