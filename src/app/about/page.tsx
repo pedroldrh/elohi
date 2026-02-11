@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BookOpen, Wrench, TrendingUp, Users, Handshake } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ParallaxHero } from "@/components/sections/parallax-hero";
+import blurData from "@/lib/blur-data.json";
 
 export const metadata: Metadata = {
   title: "About",
@@ -100,6 +101,9 @@ export default function AboutPage() {
           alt="People enjoying food together"
           fill
           className="object-cover"
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL={blurData["/dining.jpg"]}
         />
       </section>
 

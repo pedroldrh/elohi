@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/accordion";
 import { QuizTrigger } from "@/components/quiz/quiz-trigger";
 import { BookOpen, Wrench, TrendingUp, ArrowRight } from "lucide-react";
+import blurData from "@/lib/blur-data.json";
 
 const SERVICES = [
   {
@@ -153,7 +154,10 @@ export default function ServicesPage() {
                   src={service.image}
                   alt={service.imageAlt}
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  placeholder="blur"
+                  blurDataURL={blurData[service.image as keyof typeof blurData]}
                 />
                 <div
                   className="absolute bottom-3 left-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold text-[#FFFAF5]"

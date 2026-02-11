@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BookOpen, Wrench, TrendingUp } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { useReveal } from "@/lib/animations";
+import blurData from "@/lib/blur-data.json";
 
 const PILLARS = [
   {
@@ -91,6 +92,8 @@ export function Pillars() {
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  placeholder="blur"
+                  blurDataURL={blurData[pillar.image as keyof typeof blurData]}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 <div

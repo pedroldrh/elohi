@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import blurData from "@/lib/blur-data.json";
 
 const STATS = [
   { numericValue: 50, prefix: "", suffix: "+", label: "Manufacturers Advised" },
@@ -87,6 +88,9 @@ export function SocialProof() {
         alt="Artisan cheese and fruit board"
         fill
         className="object-cover"
+        sizes="100vw"
+        placeholder="blur"
+        blurDataURL={blurData["/social-proof-bg.jpg"]}
       />
       <div className="absolute inset-0 bg-black/30" />
 

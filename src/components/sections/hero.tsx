@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { QuizTrigger } from "@/components/quiz/quiz-trigger";
 import { ArrowRight } from "lucide-react";
-
+import blurData from "@/lib/blur-data.json";
 
 function TypedText({ text, className }: { text: string; className?: string }) {
   const [displayed, setDisplayed] = useState("");
@@ -61,6 +61,9 @@ export function Hero() {
           fill
           className="object-cover"
           priority
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL={blurData["/hero-plating.jpg"]}
         />
       </div>
       {/* Subtle dark overlay for text readability */}
