@@ -21,8 +21,8 @@ const TRACK_INFO: Record<
       "You're early in your foodservice journey. We'll help you build the foundation — pricing basics, distribution 101, and a clear path forward.",
     color: "#6FB7F2",
     ctaBg: "#6FB7F2",
-    cta: "Get the Foodservice Starter Pack",
-    ctaHref: "/contact?reason=learn",
+    cta: "Explore Learner Resources",
+    ctaHref: "/learn",
   },
   BUILD: {
     title: "Build",
