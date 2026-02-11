@@ -6,7 +6,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
  * Parallax scroll effect for background images.
  * Returns a Y offset value that moves slower than scroll speed.
  */
-export function useParallax(speed = 0.3) {
+export function useParallax(speed = 0.2) {
   const ref = useRef<HTMLElement>(null);
   const [offset, setOffset] = useState(0);
 
@@ -20,7 +20,8 @@ export function useParallax(speed = 0.3) {
       ticking = true;
       requestAnimationFrame(() => {
         const rect = el.getBoundingClientRect();
-        const scrolled = -rect.top * speed;
+        const maxOffset = el.offsetHeight * 0.15;
+        const scrolled = Math.max(-maxOffset, Math.min(maxOffset, -rect.top * speed));
         setOffset(scrolled);
         ticking = false;
       });

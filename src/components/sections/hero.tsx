@@ -57,14 +57,14 @@ export function Hero() {
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image with parallax */}
       <div
-        className="absolute inset-0"
+        className="absolute -inset-y-[15%] inset-x-0"
         style={{ transform: `translateY(${offset}px)`, willChange: "transform" }}
       >
         <Image
           src="/hero-plating.jpg"
           alt="Chefs plating dishes in a professional kitchen"
           fill
-          className="object-cover scale-110"
+          className="object-cover"
           priority
         />
       </div>

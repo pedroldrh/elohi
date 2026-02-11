@@ -19,14 +19,14 @@ export function ParallaxHero({
   return (
     <section ref={ref} className={`relative ${className} px-4 sm:px-6 lg:px-8 overflow-hidden`}>
       <div
-        className="absolute inset-0"
+        className="absolute -inset-y-[15%] inset-x-0"
         style={{ transform: `translateY(${offset}px)`, willChange: "transform" }}
       >
         <Image
           src={src}
           alt={alt}
           fill
-          className="object-cover scale-110"
+          className="object-cover"
         />
       </div>
       <div className="absolute inset-0 bg-black/30" />
