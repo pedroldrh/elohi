@@ -4,38 +4,41 @@ import Image from "next/image";
 import { useReveal } from "@/lib/animations";
 
 const LOGOS = [
-  { src: "/logos/kraft-heinz.webp", alt: "Kraft Heinz" },
-  { src: "/logos/impossible.webp", alt: "Impossible Foods" },
-  { src: "/logos/sara-lee.webp", alt: "Sara Lee" },
-  { src: "/logos/natures-fynd.webp", alt: "Nature's Fynd" },
-  { src: "/logos/marzetti.webp", alt: "Marzetti" },
-  { src: "/logos/quorn.webp", alt: "Quorn" },
-  { src: "/logos/lightlife.webp", alt: "Lightlife" },
-  { src: "/logos/gonnella.webp", alt: "Gonnella" },
-  { src: "/logos/uncle-matts.webp", alt: "Uncle Matt's Organic" },
-  { src: "/logos/tea-forte.webp", alt: "Tea Forté" },
-  { src: "/logos/purely-elizabeth.webp", alt: "Purely Elizabeth" },
-  { src: "/logos/nutpods.webp", alt: "Nutpods" },
+  { src: "/logos/kraft-heinz.webp", alt: "Kraft Heinz", url: "https://www.kraftheinz.com/" },
+  { src: "/logos/impossible.webp", alt: "Impossible Foods", url: "https://impossiblefoods.com/" },
+  { src: "/logos/sara-lee.webp", alt: "Sara Lee", url: "https://www.saraleefrozenbakery.com/" },
+  { src: "/logos/natures-fynd.webp", alt: "Nature's Fynd", url: "https://www.naturesfynd.com/" },
+  { src: "/logos/marzetti.webp", alt: "Marzetti", url: "https://marzetti.com/" },
+  { src: "/logos/quorn.webp", alt: "Quorn", url: "https://www.quorn.us/" },
+  { src: "/logos/lightlife.webp", alt: "Lightlife", url: "https://lightlife.com/" },
+  { src: "/logos/gonnella.webp", alt: "Gonnella", url: "https://gonnella.com/" },
+  { src: "/logos/uncle-matts.webp", alt: "Uncle Matt's Organic", url: "https://www.unclematts.com/" },
+  { src: "/logos/tea-forte.webp", alt: "Tea Forté", url: "https://teaforte.com/" },
+  { src: "/logos/purely-elizabeth.webp", alt: "Purely Elizabeth", url: "https://purelyelizabeth.com/" },
+  { src: "/logos/nutpods.webp", alt: "Nutpods", url: "https://www.nutpods.com/" },
 ];
 
 const TESTIMONIALS = [
   {
     quote:
-      "ESA gave us the playbook we needed to break into foodservice. Within six months, we had distribution in three major metro areas.",
-    name: "VP of Sales",
-    company: "Emerging CPG Brand",
+      "I needed someone who could guide us on the go-to-market strategy, so one of our really important partners is Elohi Strategic Advisors, who has kind of guided us throughout the foodservice industry and helped us to get that perspective of the operator.",
+    name: "Michelle Wolf",
+    title: "Co-Founder & CEO",
+    company: "New Wave Foods",
   },
   {
     quote:
-      "Stephanie and her team understand the foodservice channel like no one else. Their pricing and freight analysis alone saved us from costly mistakes.",
-    name: "CEO",
-    company: "Plant-Based Food Startup",
+      "Elohi helped us design our strategy for the U.S. foodservice market, including both operators and distributors. Most importantly, Elohi has played an instrumental role on its execution.",
+    name: "Andre Menezes",
+    title: "Co-Founder & CEO",
+    company: "Next Gen Foods (TiNDLE)",
   },
   {
     quote:
-      "We went from zero restaurant accounts to a full pipeline. ESA doesn't just advise — they execute.",
-    name: "Founder",
-    company: "Specialty Food Manufacturer",
+      "We found Elohi and they have been plug and play for us. They've figured out the strategy and the go-to-market strategy and how to really understand operators, and it's been essential to our product launch.",
+    name: "Shannon Cosentino-Roush",
+    title: "Chief Strategy Officer",
+    company: "Finless Foods",
   },
 ];
 
@@ -70,9 +73,12 @@ export function Clients() {
           }}
         >
           {LOGOS.map((logo) => (
-            <div
+            <a
               key={logo.alt}
-              className="relative w-24 h-16 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              href={logo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-24 h-16 opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-300"
             >
               <Image
                 src={logo.src}
@@ -80,7 +86,7 @@ export function Clients() {
                 fill
                 className="object-contain"
               />
-            </div>
+            </a>
           ))}
         </div>
 
@@ -101,7 +107,7 @@ export function Clients() {
               </p>
               <div className="mt-4 pt-4 border-t border-border">
                 <p className="text-sm font-medium text-foreground">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.company}</p>
+                <p className="text-xs text-muted-foreground">{t.title}, {t.company}</p>
               </div>
             </div>
           ))}
