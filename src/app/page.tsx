@@ -6,6 +6,8 @@ import { FeaturedVideo } from "@/components/sections/featured-video";
 import { CTABanner } from "@/components/sections/cta-banner";
 import { ImagePrefetcher } from "@/components/image-prefetcher";
 
+export const dynamic = 'force-static';
+
 export default function HomePage() {
   return (
     <main>

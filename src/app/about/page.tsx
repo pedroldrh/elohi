@@ -5,6 +5,8 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ParallaxHero } from "@/components/sections/parallax-hero";
 import blurData from "@/lib/blur-data.json";
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: "About",
   description:

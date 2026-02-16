@@ -4,6 +4,8 @@ import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ParallaxHero } from "@/components/sections/parallax-hero";
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: "Learn",
   description:
