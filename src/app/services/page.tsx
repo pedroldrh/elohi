@@ -131,7 +131,7 @@ export default function ServicesPage() {
           <h1 className="text-4xl sm:text-5xl font-bold text-[#FFFAF5]">
             Services
           </h1>
-          <p className="mt-4 text-lg text-[#E0C5AC] max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white max-w-2xl mx-auto">
             Choose the track that matches where you are.
           </p>
           <div className="mt-4">
