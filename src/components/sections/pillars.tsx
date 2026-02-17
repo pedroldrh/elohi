@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { BookOpen, Wrench, TrendingUp } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { useReveal } from "@/lib/animations";
@@ -20,6 +21,7 @@ const PILLARS = [
       "CRM & pipeline basics",
     ],
     accentColor: "#6FB7F2",
+    href: "/learn",
   },
   {
     icon: Wrench,
@@ -74,56 +76,65 @@ export function Pillars() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {PILLARS.map((pillar, i) => (
-            <Card
-              key={pillar.title}
-              className="rounded-2xl border-border overflow-hidden hover:border-[#AF95E4]/40 transition-all duration-700 ease-out group pt-0 gap-0"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateY(0)" : "translateY(40px)",
-                transitionDelay: `${200 + i * 150}ms`,
-              }}
-            >
-              {/* Card image */}
-              <div className="relative h-48 overflow-hidden bg-black">
-                <Image
-                  src={pillar.image}
-                  alt={pillar.imageAlt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  placeholder="blur"
-                  blurDataURL={blurData[pillar.image as keyof typeof blurData]}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                <div
-                  className="absolute bottom-3 left-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold text-[#FFFAF5]"
-                  style={{ backgroundColor: pillar.accentColor }}
-                >
-                  <pillar.icon className="w-3.5 h-3.5" />
-                  {pillar.title}
+          {PILLARS.map((pillar, i) => {
+            const cardContent = (
+              <Card
+                className="rounded-2xl border-border overflow-hidden hover:border-[#AF95E4]/40 transition-all duration-700 ease-out group pt-0 gap-0 h-full"
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? "translateY(0)" : "translateY(40px)",
+                  transitionDelay: `${200 + i * 150}ms`,
+                }}
+              >
+                {/* Card image */}
+                <div className="relative h-48 overflow-hidden bg-black">
+                  <Image
+                    src={pillar.image}
+                    alt={pillar.imageAlt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    placeholder="blur"
+                    blurDataURL={blurData[pillar.image as keyof typeof blurData]}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div
+                    className="absolute bottom-3 left-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold text-[#FFFAF5]"
+                    style={{ backgroundColor: pillar.accentColor }}
+                  >
+                    <pillar.icon className="w-3.5 h-3.5" />
+                    {pillar.title}
+                  </div>
                 </div>
-              </div>
 
-              <CardHeader className="pt-4">
-                <CardTitle className="text-xl">{pillar.title}</CardTitle>
-                <CardDescription className="mb-3">{pillar.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {pillar.details.map((detail) => (
-                    <li
-                      key={detail}
-                      className="text-sm text-muted-foreground flex items-center gap-2"
-                    >
-                      <span style={{ color: pillar.accentColor }} className="text-lg leading-none shrink-0">&#8226;</span>
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
+                <CardHeader className="pt-4">
+                  <CardTitle className="text-xl">{pillar.title}</CardTitle>
+                  <CardDescription className="mb-3">{pillar.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {pillar.details.map((detail) => (
+                      <li
+                        key={detail}
+                        className="text-sm text-muted-foreground flex items-center gap-2"
+                      >
+                        <span style={{ color: pillar.accentColor }} className="text-lg leading-none shrink-0">&#8226;</span>
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            );
+
+            return pillar.href ? (
+              <Link key={pillar.title} href={pillar.href} className="block">
+                {cardContent}
+              </Link>
+            ) : (
+              <div key={pillar.title}>{cardContent}</div>
+            );
+          })}
         </div>
       </div>
     </section>
