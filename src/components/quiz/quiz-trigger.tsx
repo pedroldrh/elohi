@@ -31,7 +31,7 @@ export function QuizTrigger({
       size={size}
       variant={variant}
       className={cn(
-        "bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/25",
+        "bg-primary hover:bg-[#FFFAF5] hover:text-[#6929CD] text-primary-foreground font-semibold shadow-lg shadow-primary/25 transition-colors",
         className
       )}
     >
