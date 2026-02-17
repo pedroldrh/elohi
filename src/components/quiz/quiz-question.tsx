@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import type { QuizQuestion as QuizQuestionType } from "@/lib/quiz-config";
 
@@ -21,6 +21,8 @@ export function QuizQuestion({
   onSubmitAnswer,
   onBack,
 }: QuizQuestionProps) {
+  const isYesNo = question.type === "yesno" || question.type === "yesno_detail";
+
   const [yesNo, setYesNo] = useState<"Yes" | "No" | null>(() => {
     if (currentAnswer === "Yes" || currentAnswer.startsWith("Yes: ")) return "Yes";
     if (currentAnswer === "No") return "No";
@@ -32,17 +34,28 @@ export function QuizQuestion({
   });
   const [text, setText] = useState(currentAnswer);
 
+  // Reset state when question changes
+  useEffect(() => {
+    setYesNo(() => {
+      if (currentAnswer === "Yes" || currentAnswer.startsWith("Yes: ")) return "Yes";
+      if (currentAnswer === "No") return "No";
+      return null;
+    });
+    setDetail(() => {
+      if (currentAnswer.startsWith("Yes: ")) return currentAnswer.slice(5);
+      return "";
+    });
+    setText(currentAnswer);
+  }, [question.question, currentAnswer]);
+
   const canProceed = (() => {
-    if (question.type === "yesno") return yesNo !== null;
-    if (question.type === "yesno_detail") return yesNo !== null;
+    if (isYesNo) return yesNo !== null;
     if (question.type === "text") return text.trim().length > 0;
     return false;
   })();
 
   const handleNext = () => {
-    if (question.type === "yesno") {
-      onSubmitAnswer(yesNo!);
-    } else if (question.type === "yesno_detail") {
+    if (isYesNo) {
       if (yesNo === "Yes" && detail.trim()) {
         onSubmitAnswer(`Yes: ${detail.trim()}`);
       } else {
@@ -55,9 +68,9 @@ export function QuizQuestion({
 
   const handleYesNoSelect = (value: "Yes" | "No") => {
     setYesNo(value);
-    // Auto-advance for simple yes/no questions
-    if (question.type === "yesno") {
-      onSubmitAnswer(value);
+    setDetail("");
+    if (value === "No") {
+      onSubmitAnswer("No");
     }
   };
 
@@ -73,7 +86,7 @@ export function QuizQuestion({
       </div>
 
       {/* Yes/No buttons */}
-      {(question.type === "yesno" || question.type === "yesno_detail") && (
+      {isYesNo && (
         <div className="flex gap-3">
           {(["Yes", "No"] as const).map((option) => (
             <button
@@ -91,13 +104,13 @@ export function QuizQuestion({
         </div>
       )}
 
-      {/* Detail text field for yesno_detail when "Yes" is selected */}
-      {question.type === "yesno_detail" && yesNo === "Yes" && (
+      {/* Detail text field when "Yes" is selected */}
+      {isYesNo && yesNo === "Yes" && (
         <div className="space-y-2">
           <textarea
             value={detail}
             onChange={(e) => setDetail(e.target.value)}
-            placeholder={question.placeholder}
+            placeholder={question.placeholder || "Tell us more..."}
             rows={2}
             className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary resize-none"
           />
@@ -119,8 +132,8 @@ export function QuizQuestion({
         <Button variant="ghost" size="sm" onClick={onBack}>
           Back
         </Button>
-        {/* Show Next button for text and yesno_detail questions */}
-        {question.type !== "yesno" && (
+        {/* Show Next for text questions and yes/no when Yes is selected */}
+        {(question.type === "text" || (isYesNo && yesNo === "Yes")) && (
           <Button size="sm" onClick={handleNext} disabled={!canProceed}>
             {questionNumber === totalQuestions ? "Submit" : "Next"}
           </Button>
