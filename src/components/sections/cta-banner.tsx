@@ -30,7 +30,7 @@ export function CTABanner() {
             <h2 className="text-3xl sm:text-4xl font-bold text-[#FFFAF5]">
               Ready to find out <span className="font-demontilles">where you stand?</span>
             </h2>
-            <p className="mt-4 text-lg text-[#E0C5AC] max-w-xl mx-auto font-bilo">
+            <p className="mt-4 text-lg text-white max-w-xl mx-auto font-bilo">
               Take our 2-minute readiness quiz and get a personalized roadmap for
               growing your foodservice business.
             </p>

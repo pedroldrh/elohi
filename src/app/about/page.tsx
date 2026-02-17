@@ -55,7 +55,7 @@ export default function AboutPage() {
               foodservice reality.
             </span>
           </h1>
-          <p className="mt-6 text-lg text-[#E0C5AC] max-w-2xl mx-auto leading-relaxed font-bilo">
+          <p className="mt-6 text-lg text-white max-w-2xl mx-auto leading-relaxed font-bilo">
             Elohi exists because too many great food products never reach
             restaurant menus. We bridge the gap between manufacturing excellence
             and foodservice distribution with strategy grounded in real-world
