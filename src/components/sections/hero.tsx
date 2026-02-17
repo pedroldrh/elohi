@@ -73,7 +73,7 @@ export function Hero() {
           Foodservice growth,{" "}
           <TypedText
             text="engineered."
-            className="bg-gradient-to-r from-[#6FB7F2] via-[#AF95E4] to-[#E41C50] bg-clip-text text-transparent inline-block px-3 py-3 -mx-3 leading-loose italic"
+            className="bg-gradient-to-r from-[#6FB7F2] via-[#AF95E4] to-[#E41C50] bg-clip-text text-transparent inline-block px-3 py-3 -mx-3 leading-loose italic font-accent"
           />
         </h1>
 
