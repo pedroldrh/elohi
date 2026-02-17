@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { QuizTrigger } from "@/components/quiz/quiz-trigger";
 import { ArrowRight } from "lucide-react";
 import blurData from "@/lib/blur-data.json";
 
@@ -83,19 +82,12 @@ export function Hero() {
           freight economics, pipeline, and go-to-market.
         </p>
 
-        <div className="mt-10 flex flex-col items-center gap-6">
+        <div className="mt-10">
           <Button asChild variant="outline" size="lg" className="border-[#FFFAF5]/30 text-[#FFFAF5] hover:bg-[#FFFAF5] hover:text-[#6929CD]">
             <Link href="/services">
               See Services <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
-
-          <div className="flex flex-col sm:flex-row items-center gap-3">
-            <p className="text-sm text-[#FFFAF5]/80 font-bilo">
-              How ready for foodservice is your brand?
-            </p>
-            <QuizTrigger size="sm" />
-          </div>
         </div>
       </div>
     </section>
