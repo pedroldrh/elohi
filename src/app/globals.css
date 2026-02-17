@@ -8,7 +8,7 @@
   Custom Fonts:
   Frank Bold        → body/headings (primary font)
   Bilo Regular      → body alternate / softer descriptions
-  Bagel Fat One     → special/accent words (display font)
+  Bungee            → special/accent words (display font)
 */
 @font-face {
   font-family: "Frank";
@@ -29,8 +29,8 @@
 }
 
 @font-face {
-  font-family: "Bagel Fat One";
-  src: url("/fonts/BagelFatOne-Regular.ttf") format("truetype");
+  font-family: "Bungee";
+  src: url("/fonts/Bungee-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -77,7 +77,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --font-frank: "Frank", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-bilo: "Bilo", "Georgia", ui-serif, serif;
-  --font-accent: "Bagel Fat One", "Georgia", serif;
+  --font-accent: "Bungee", "Georgia", serif;
 }
 
 /*
