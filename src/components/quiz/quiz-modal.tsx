@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducer, useCallback, useEffect } from "react";
+import { useReducer, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Dialog,
@@ -10,26 +10,23 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { QuizLeadCapture } from "./quiz-lead-capture";
 import { QuizQuestion } from "./quiz-question";
-import { QuizResults } from "./quiz-results";
+import { QuizThankYou } from "./quiz-thank-you";
 import { QUIZ_QUESTIONS, TOTAL_QUESTIONS } from "@/lib/quiz-config";
-import { calculateQuizResult } from "@/lib/quiz-scoring";
 import { trackEvent } from "@/lib/analytics";
-import type { QuizResult } from "@/types";
 
 interface QuizState {
-  step: number; // 0=lead, 1-8=questions, 9=results
+  step: number; // 0=lead, 1-N=questions, N+1=thank you
   lead: { email: string; company: string; role: string };
-  answers: (number | null)[];
-  result: QuizResult | null;
+  answers: string[];
   isSubmitting: boolean;
   error: string | null;
 }
 
 type QuizAction =
   | { type: "SET_LEAD"; payload: { email: string; company: string; role: string } }
-  | { type: "SET_ANSWER"; payload: { questionIndex: number; optionIndex: number } }
+  | { type: "SET_ANSWER"; payload: { questionIndex: number; answer: string } }
   | { type: "GO_BACK" }
-  | { type: "SET_RESULT"; payload: QuizResult }
+  | { type: "FINISH" }
   | { type: "SET_SUBMITTING"; payload: boolean }
   | { type: "SET_ERROR"; payload: string | null }
   | { type: "RESET" };
@@ -37,8 +34,7 @@ type QuizAction =
 const initialState: QuizState = {
   step: 0,
   lead: { email: "", company: "", role: "" },
-  answers: Array(TOTAL_QUESTIONS).fill(null),
-  result: null,
+  answers: Array(TOTAL_QUESTIONS).fill(""),
   isSubmitting: false,
   error: null,
 };
@@ -49,14 +45,14 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
       return { ...state, lead: action.payload, step: 1 };
     case "SET_ANSWER": {
       const answers = [...state.answers];
-      answers[action.payload.questionIndex] = action.payload.optionIndex;
+      answers[action.payload.questionIndex] = action.payload.answer;
       const nextStep = state.step + 1;
       return { ...state, answers, step: nextStep };
     }
     case "GO_BACK":
       return { ...state, step: Math.max(0, state.step - 1) };
-    case "SET_RESULT":
-      return { ...state, result: action.payload, step: TOTAL_QUESTIONS + 1 };
+    case "FINISH":
+      return { ...state, step: TOTAL_QUESTIONS + 1 };
     case "SET_SUBMITTING":
       return { ...state, isSubmitting: action.payload };
     case "SET_ERROR":
@@ -102,22 +98,19 @@ export function QuizModal() {
   );
 
   const handleAnswer = useCallback(
-    async (optionIndex: number) => {
+    async (answer: string) => {
       const questionIndex = state.step - 1;
       dispatch({
         type: "SET_ANSWER",
-        payload: { questionIndex, optionIndex },
+        payload: { questionIndex, answer },
       });
 
-      trackEvent("quiz_answer", { question: questionIndex + 1, option: optionIndex });
+      trackEvent("quiz_answer", { question: questionIndex + 1 });
 
       // If this was the last question, submit
       if (state.step === TOTAL_QUESTIONS) {
         const updatedAnswers = [...state.answers];
-        updatedAnswers[questionIndex] = optionIndex;
-
-        const validAnswers = updatedAnswers.map((a) => a ?? 0);
-        const result = calculateQuizResult(validAnswers);
+        updatedAnswers[questionIndex] = answer;
 
         dispatch({ type: "SET_SUBMITTING", payload: true });
 
@@ -127,21 +120,16 @@ export function QuizModal() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               lead: state.lead,
-              answers: validAnswers,
-              result,
+              answers: updatedAnswers,
             }),
           });
         } catch {
-          // Non-blocking — results still show even if submit fails
           console.error("[Quiz] Failed to submit results");
         }
 
         dispatch({ type: "SET_SUBMITTING", payload: false });
-        dispatch({ type: "SET_RESULT", payload: result });
-        trackEvent("quiz_completed", {
-          score: result.readinessScore,
-          track: result.recommendedTrack,
-        });
+        dispatch({ type: "FINISH" });
+        trackEvent("quiz_completed", { email: state.lead.email });
       }
     },
     [state.step, state.answers, state.lead]
@@ -182,20 +170,20 @@ export function QuizModal() {
             question={QUIZ_QUESTIONS[state.step - 1]}
             questionNumber={state.step}
             totalQuestions={TOTAL_QUESTIONS}
-            selectedOption={state.answers[state.step - 1]}
-            onSelect={handleAnswer}
+            currentAnswer={state.answers[state.step - 1]}
+            onSubmitAnswer={handleAnswer}
             onBack={handleBack}
           />
         )}
 
-        {state.step > TOTAL_QUESTIONS && state.result && (
-          <QuizResults result={state.result} onClose={closeQuiz} />
+        {state.step > TOTAL_QUESTIONS && (
+          <QuizThankYou onClose={closeQuiz} />
         )}
 
         {state.isSubmitting && (
           <div className="absolute inset-0 flex items-center justify-center bg-background/80 rounded-2xl">
             <div className="text-sm text-muted-foreground animate-pulse">
-              Calculating your results...
+              Submitting your responses...
             </div>
           </div>
         )}

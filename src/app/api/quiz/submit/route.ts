@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase";
-import { calculateQuizResult } from "@/lib/quiz-scoring";
 import { rateLimit } from "@/lib/rate-limit";
 import { sendEmail } from "@/lib/resend";
 import { syncLeadToHubSpot } from "@/lib/hubspot";
-import type { QuizSubmission } from "@/types";
+import { QUIZ_QUESTIONS } from "@/lib/quiz-config";
 
 export async function POST(request: NextRequest) {
   const ip = request.headers.get("x-forwarded-for") || "unknown";
@@ -16,7 +15,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let body: QuizSubmission;
+  let body: { lead: { email: string; company: string; role: string }; answers: string[] };
   try {
     body = await request.json();
   } catch {
@@ -25,12 +24,9 @@ export async function POST(request: NextRequest) {
 
   const { lead, answers } = body;
 
-  if (!lead?.email || !Array.isArray(answers) || answers.length !== 9) {
+  if (!lead?.email || !Array.isArray(answers)) {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });
   }
-
-  // Server-side recalculation (don't trust client score)
-  const result = calculateQuizResult(answers);
 
   const supabase = createServerSupabaseClient();
   if (supabase) {
@@ -61,9 +57,6 @@ export async function POST(request: NextRequest) {
           .insert({
             lead_id: leadData.id,
             answers_json: answers,
-            readiness_score: result.readinessScore,
-            recommended_track: result.recommendedTrack,
-            gap_tags: result.gapTags,
           });
 
         if (quizError) {
@@ -76,26 +69,34 @@ export async function POST(request: NextRequest) {
   } else {
     console.log("[Quiz] No Supabase configured. Submission logged:", {
       email: lead.email,
-      score: result.readinessScore,
-      track: result.recommendedTrack,
+      answers,
     });
   }
 
-  // Send result email (non-blocking)
+  // Build answer summary for email
+  const answerSummary = answers
+    .map((answer, i) => {
+      const q = QUIZ_QUESTIONS[i];
+      return q ? `<p><strong>${q.question}</strong><br/>${answer || "—"}</p>` : "";
+    })
+    .join("");
+
+  // Send notification email to team (non-blocking)
   sendEmail({
     to: lead.email,
-    subject: `Your Elohi Readiness Score: ${result.readinessScore}%`,
+    subject: "Thanks for completing the Elohi questionnaire!",
     html: `
-      <h2>Your Foodservice Readiness Results</h2>
-      <p>Score: <strong>${result.readinessScore}%</strong></p>
-      <p>Recommended track: <strong>${result.recommendedTrack}</strong></p>
-      <p>Key areas to address: ${result.gapTags.join(", ")}</p>
-      <p><a href="https://elohi.us/services">Learn more about how we can help →</a></p>
+      <h2>Your Responses</h2>
+      <p>Thank you for taking the time to complete our questionnaire. Our team will review your answers and be in touch soon.</p>
+      <hr/>
+      ${answerSummary}
+      <hr/>
+      <p><a href="https://elohi.us/contact">Book a strategy call →</a></p>
     `,
   }).catch(() => {});
 
   // Sync to HubSpot (non-blocking)
   syncLeadToHubSpot(lead).catch(() => {});
 
-  return NextResponse.json({ result });
+  return NextResponse.json({ success: true });
 }

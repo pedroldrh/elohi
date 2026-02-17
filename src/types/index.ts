@@ -12,16 +12,7 @@ export interface Lead {
 
 export interface QuizAnswer {
   questionIndex: number;
-  optionIndex: number;
-}
-
-export type Track = "LEARN" | "BUILD" | "SCALE";
-
-export interface QuizResult {
-  readinessScore: number;
-  recommendedTrack: Track;
-  gapTags: string[];
-  rawScore: number;
+  answer: string;
 }
 
 export interface ContactMessage {
@@ -35,6 +26,5 @@ export interface ContactMessage {
 
 export interface QuizSubmission {
   lead: Pick<Lead, "email" | "company" | "role">;
-  answers: number[];
-  result: QuizResult;
+  answers: string[];
 }

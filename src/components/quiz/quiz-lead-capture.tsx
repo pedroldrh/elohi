@@ -27,8 +27,8 @@ export function QuizLeadCapture({ onSubmit, initialLead }: QuizLeadCaptureProps)
           Is your business ready for foodservice?
         </h2>
         <p className="mt-2 text-muted-foreground">
-          Answer 9 quick questions and get a personalized readiness score with
-          actionable recommendations.
+          Answer a few quick questions so we can understand where you are
+          and how ESA can best support your foodservice growth.
         </p>
       </div>
 
