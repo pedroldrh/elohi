@@ -51,7 +51,7 @@ export default function AboutPage() {
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#FFFAF5]">
             Built for{" "}
-            <span className="font-dm-serif bg-gradient-to-r from-[#6FB7F2] to-[#F6A6B3] bg-clip-text text-transparent inline-block px-3 py-3 -mx-3 leading-loose">
+            <span className="font-accent text-white inline-block px-3 py-3 -mx-3 leading-loose">
               foodservice reality.
             </span>
           </h1>

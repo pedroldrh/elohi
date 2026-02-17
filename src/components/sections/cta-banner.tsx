@@ -28,7 +28,7 @@ export function CTABanner() {
 
           <div className="relative z-10 p-12 sm:p-16 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#FFFAF5]">
-              Ready to find out <span className="font-dm-serif">where you stand?</span>
+              Ready to find out <span className="font-accent">where you stand?</span>
             </h2>
             <p className="mt-4 text-lg text-white max-w-xl mx-auto font-bilo">
               Take our 2-minute readiness quiz and get a personalized roadmap for
