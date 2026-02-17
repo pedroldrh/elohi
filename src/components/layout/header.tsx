@@ -90,7 +90,7 @@ export function Header() {
                   <Link
                     key={track.label}
                     href={track.href}
-                    className="block px-4 py-2.5 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                    className="block px-4 py-2.5 text-sm font-medium text-white hover:bg-muted hover:text-foreground transition-colors"
                     onClick={() => setTracksOpen(false)}
                   >
                     {track.label}
