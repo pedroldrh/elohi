@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { QuizTrigger } from "@/components/quiz/quiz-trigger";
 
@@ -76,28 +76,27 @@ export function Header() {
             ))}
             <QuizTrigger size="sm" />
             <div className="relative" ref={tracksRef}>
-              <Button
-                size="sm"
-                variant="outline"
-                className="border-[#FFFAF5]/30 text-[#FFFAF5] hover:bg-[#FFFAF5] hover:text-[#6929CD] transition-colors"
+              <button
                 onClick={() => setTracksOpen(!tracksOpen)}
+                className="flex flex-col justify-center items-center w-8 h-8 gap-[5px] group"
+                aria-label="Toggle tracks menu"
               >
-                Tracks <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${tracksOpen ? "rotate-180" : ""}`} />
-              </Button>
-              {tracksOpen && (
-                <div className="absolute right-0 mt-2 w-40 rounded-lg border border-border bg-background/95 backdrop-blur-lg shadow-lg overflow-hidden">
-                  {TRACKS.map((track) => (
-                    <Link
-                      key={track.label}
-                      href={track.href}
-                      className="block px-4 py-2.5 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-                      onClick={() => setTracksOpen(false)}
-                    >
-                      {track.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+                <span className={`block h-[2px] w-5 bg-[#FFFAF5] rounded-full transition-all duration-300 ${tracksOpen ? "translate-y-[7px] rotate-45" : "group-hover:w-6"}`} />
+                <span className={`block h-[2px] w-5 bg-[#FFFAF5] rounded-full transition-all duration-300 ${tracksOpen ? "opacity-0 scale-0" : "group-hover:w-4"}`} />
+                <span className={`block h-[2px] w-5 bg-[#FFFAF5] rounded-full transition-all duration-300 ${tracksOpen ? "-translate-y-[7px] -rotate-45" : "group-hover:w-6"}`} />
+              </button>
+              <div className={`absolute right-0 mt-3 w-40 rounded-lg border border-border bg-background/95 backdrop-blur-lg shadow-lg overflow-hidden transition-all duration-200 origin-top-right ${tracksOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}>
+                {TRACKS.map((track) => (
+                  <Link
+                    key={track.label}
+                    href={track.href}
+                    className="block px-4 py-2.5 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                    onClick={() => setTracksOpen(false)}
+                  >
+                    {track.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </nav>
 
