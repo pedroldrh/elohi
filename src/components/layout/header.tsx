@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { QuizTrigger } from "@/components/quiz/quiz-trigger";
 
@@ -14,14 +14,32 @@ const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
+const TRACKS = [
+  { href: "/learn", label: "Learn" },
+  { href: "/contact", label: "Build" },
+  { href: "/contact", label: "Scale" },
+];
+
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [tracksOpen, setTracksOpen] = useState(false);
+  const tracksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (tracksRef.current && !tracksRef.current.contains(e.target as Node)) {
+        setTracksOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -57,6 +75,30 @@ export function Header() {
               </Link>
             ))}
             <QuizTrigger size="sm" />
+            <div className="relative" ref={tracksRef}>
+              <Button
+                size="sm"
+                variant="outline"
+                className="border-[#FFFAF5]/30 text-[#FFFAF5] hover:bg-[#FFFAF5] hover:text-[#6929CD] transition-colors"
+                onClick={() => setTracksOpen(!tracksOpen)}
+              >
+                Tracks <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${tracksOpen ? "rotate-180" : ""}`} />
+              </Button>
+              {tracksOpen && (
+                <div className="absolute right-0 mt-2 w-40 rounded-lg border border-border bg-background/95 backdrop-blur-lg shadow-lg overflow-hidden">
+                  {TRACKS.map((track) => (
+                    <Link
+                      key={track.label}
+                      href={track.href}
+                      className="block px-4 py-2.5 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                      onClick={() => setTracksOpen(false)}
+                    >
+                      {track.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Mobile hamburger */}
@@ -86,8 +128,21 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <div className="mt-2 px-3">
+            <div className="mt-2 px-3 space-y-2">
               <QuizTrigger className="w-full" />
+              <div className="pt-2 border-t border-border">
+                <p className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Tracks</p>
+                {TRACKS.map((track) => (
+                  <Link
+                    key={track.label}
+                    href={track.href}
+                    className="block rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {track.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </nav>
         </div>
