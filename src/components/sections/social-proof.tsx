@@ -57,7 +57,7 @@ function StatItem({ stat, isVisible, delay }: {
       <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#6FB7F2] to-[#95E1BF] bg-clip-text text-transparent">
         {stat.prefix}{count}{stat.suffix}
       </p>
-      <p className="mt-2 text-sm text-[#E0C5AC] font-bilo">{stat.label}</p>
+      <p className="mt-2 text-sm text-white font-bilo">{stat.label}</p>
     </div>
   );
 }
