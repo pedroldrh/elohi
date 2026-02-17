@@ -36,7 +36,7 @@ export default function LearnPage() {
           <h1 className="text-4xl sm:text-5xl font-bold text-[#FFFAF5]">
             Learn
           </h1>
-          <p className="mt-4 text-lg text-[#E0C5AC] max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white max-w-2xl mx-auto">
             Free foodservice education — straight from the experts.
           </p>
         </div>
