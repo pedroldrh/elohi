@@ -66,7 +66,7 @@ export function Clients() {
 
         {/* Logo grid */}
         <div
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 items-center justify-items-center mb-16 transition-all duration-700 ease-out"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-8 items-center justify-items-center mb-16 transition-all duration-700 ease-out"
           style={{
             opacity: isVisible ? 1 : 0,
             transitionDelay: "200ms",
@@ -78,7 +78,7 @@ export function Clients() {
               href={logo.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative w-24 h-16 opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-300"
+              className="relative w-36 h-24 opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-300"
             >
               <Image
                 src={logo.src}
