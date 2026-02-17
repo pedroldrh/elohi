@@ -78,6 +78,7 @@
   --font-frank: "Frank", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-bilo: "Bilo", "Georgia", ui-serif, serif;
   --font-demontilles: "Demontilles", "Playfair Display", cursive;
+  --font-dm-serif: "DM Serif Display", "Georgia", serif;
 }
 
 /*
@@ -140,6 +141,10 @@
 
 .font-demontilles {
   font-family: var(--font-demontilles);
+}
+
+.font-dm-serif {
+  font-family: var(--font-dm-serif);
 }
 
 /* Page transition fade-in */

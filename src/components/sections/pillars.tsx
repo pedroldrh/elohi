@@ -67,7 +67,7 @@ export function Pillars() {
           }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            Three tracks. <span className="font-demontilles">One goal.</span>
+            Three tracks. <span className="font-dm-serif">One goal.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto font-bilo">
             Whether you&apos;re just starting or ready to scale, we meet you where
