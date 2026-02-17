@@ -154,7 +154,7 @@ export function QuizModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <DialogTitle className="sr-only">Foodservice Readiness Quiz</DialogTitle>
 
         {/* Progress bar for question steps */}
