@@ -78,12 +78,13 @@ export function Clients() {
               href={logo.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative w-36 h-24 opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-300"
+              className="relative w-44 h-28 opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-300"
             >
               <Image
                 src={logo.src}
                 alt={logo.alt}
                 fill
+                sizes="176px"
                 className="object-contain"
               />
             </a>
