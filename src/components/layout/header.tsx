@@ -38,9 +38,9 @@ export function Header() {
             <Image
               src="/elohi-logo.png"
               alt="Elohi Strategic Advisors"
-              width={240}
-              height={80}
-              className="h-16 w-auto"
+              width={300}
+              height={100}
+              className="h-20 w-auto"
               priority
             />
           </Link>
