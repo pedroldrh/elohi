@@ -12,12 +12,14 @@ import { QuizLeadCapture } from "./quiz-lead-capture";
 import { QuizQuestion } from "./quiz-question";
 import { QuizThankYou } from "./quiz-thank-you";
 import { QUIZ_QUESTIONS, TOTAL_QUESTIONS } from "@/lib/quiz-config";
+import { determineTrack, type Track } from "@/lib/quiz-scoring";
 import { trackEvent } from "@/lib/analytics";
 
 interface QuizState {
   step: number; // 0=lead, 1-N=questions, N+1=thank you
   lead: { email: string; company: string; role: string };
   answers: string[];
+  track: Track | null;
   isSubmitting: boolean;
   error: string | null;
 }
@@ -26,7 +28,7 @@ type QuizAction =
   | { type: "SET_LEAD"; payload: { email: string; company: string; role: string } }
   | { type: "SET_ANSWER"; payload: { questionIndex: number; answer: string } }
   | { type: "GO_BACK" }
-  | { type: "FINISH" }
+  | { type: "FINISH"; payload: Track }
   | { type: "SET_SUBMITTING"; payload: boolean }
   | { type: "SET_ERROR"; payload: string | null }
   | { type: "RESET" };
@@ -35,6 +37,7 @@ const initialState: QuizState = {
   step: 0,
   lead: { email: "", company: "", role: "" },
   answers: Array(TOTAL_QUESTIONS).fill(""),
+  track: null,
   isSubmitting: false,
   error: null,
 };
@@ -52,7 +55,7 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
     case "GO_BACK":
       return { ...state, step: Math.max(0, state.step - 1) };
     case "FINISH":
-      return { ...state, step: TOTAL_QUESTIONS + 1 };
+      return { ...state, step: TOTAL_QUESTIONS + 1, track: action.payload };
     case "SET_SUBMITTING":
       return { ...state, isSubmitting: action.payload };
     case "SET_ERROR":
@@ -127,9 +130,11 @@ export function QuizModal() {
           console.error("[Quiz] Failed to submit results");
         }
 
+        const track = determineTrack(updatedAnswers);
+
         dispatch({ type: "SET_SUBMITTING", payload: false });
-        dispatch({ type: "FINISH" });
-        trackEvent("quiz_completed", { email: state.lead.email });
+        dispatch({ type: "FINISH", payload: track });
+        trackEvent("quiz_completed", { email: state.lead.email, track });
       }
     },
     [state.step, state.answers, state.lead]
@@ -176,8 +181,8 @@ export function QuizModal() {
           />
         )}
 
-        {state.step > TOTAL_QUESTIONS && (
-          <QuizThankYou onClose={closeQuiz} />
+        {state.step > TOTAL_QUESTIONS && state.track && (
+          <QuizThankYou track={state.track} onClose={closeQuiz} />
         )}
 
         {state.isSubmitting && (
