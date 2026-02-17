@@ -78,7 +78,7 @@ export function Hero() {
           />
         </h1>
 
-        <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-[#E0C5AC] leading-relaxed font-bilo">
+        <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-white leading-relaxed font-bilo">
           For manufacturers ready to win restaurant distribution&mdash;pricing,
           freight economics, pipeline, and go-to-market.
         </p>
